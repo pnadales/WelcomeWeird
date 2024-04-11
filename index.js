@@ -79,8 +79,11 @@ app.get("/renombrar", async (req, res) => {
     const { nombre, nuevoNombre } = req.query
     try {
         await fs.rename(nombre, nuevoNombre)
-        res.send(`Archivo ${nombre} renombrado por ${nuevoNombre}`)
-            `Archivo ${archivo} eliminado con éxito`
+        // res.send(`Archivo ${nombre} renombrado por ${nuevoNombre}`)
+        res.render("main", {
+            mensaje: `Archivo ${nombre} renombrado por ${nuevoNombre}`
+        });
+
     } catch (error) {
         // res.status(500).send("Hubo un error :(")
         res.status(500).render("main", {
